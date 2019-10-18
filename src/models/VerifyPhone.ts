@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 import { IVerifyPhone } from '../types/types';
 
-const VerifyPhoneNumberSchema = new mongoose.Schema({
+const VerifyPhoneNumberSchema: mongoose.Schema = new mongoose.Schema({
     number: String,
-    verified: Boolean,
+    verified: { type: Boolean, default: false },
     name: String,
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    key: String,
+    studentId: String
 })
 
 const VerifyPhoneModel: mongoose.Model<IVerifyPhone> = mongoose.model<IVerifyPhone>('VerfiyPhone', VerifyPhoneNumberSchema);

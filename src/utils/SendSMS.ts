@@ -5,6 +5,7 @@ import fs from 'fs';
 dotenv.config()
 
 export const sendSMSMEssage = (to: string, text: string) => {
+    console.log('to:', to)
     axios.post(process.env.NEXMO_URL, {
         api_key: process.env.NEXMO_KEY,
         api_secret: process.env.NEXMO_SECRET,
