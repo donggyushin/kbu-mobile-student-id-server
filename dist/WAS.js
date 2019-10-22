@@ -10,9 +10,11 @@ var http_1 = __importDefault(require("http"));
 var https_1 = __importDefault(require("https"));
 var privateKey = fs_1.default.readFileSync(__dirname + '/key/priv.pem');
 var certificate = fs_1.default.readFileSync(__dirname + '/key/cert.pem');
+var chain = fs_1.default.readFileSync(__dirname + '/key/chain.pem');
 var credentials = {
     key: privateKey,
-    cert: certificate
+    cert: certificate,
+    ca: chain
 };
 var PORT = 4000;
 var httpServer = http_1.default.createServer(app_1.default);

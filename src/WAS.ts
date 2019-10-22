@@ -5,9 +5,11 @@ import http from 'http';
 import https from 'https';
 const privateKey = fs.readFileSync(__dirname + '/key/priv.pem');
 const certificate = fs.readFileSync(__dirname + '/key/cert.pem');
+const chain = fs.readFileSync(__dirname + '/key/chain.pem')
 const credentials = {
     key: privateKey,
-    cert: certificate
+    cert: certificate,
+    ca: chain
 }
 
 const PORT = 4000
