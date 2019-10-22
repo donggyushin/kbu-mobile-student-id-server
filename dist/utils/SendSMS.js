@@ -8,6 +8,7 @@ var axios_1 = __importDefault(require("axios"));
 var fs_1 = __importDefault(require("fs"));
 dotenv_1.default.config();
 exports.sendSMSMEssage = function (to, text) {
+    console.log('to:', to);
     axios_1.default.post(process.env.NEXMO_URL, {
         api_key: process.env.NEXMO_KEY,
         api_secret: process.env.NEXMO_SECRET,
