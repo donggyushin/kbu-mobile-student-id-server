@@ -46,7 +46,7 @@ var node_rsa_1 = __importDefault(require("node-rsa"));
 var crypto_1 = __importDefault(require("crypto"));
 var env = process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
 // const END_POINT = '172.30.1.55'
-var END_POINT = '192.210.53.188';
+var END_POINT = '220.67.154.77';
 if (env === 'production') {
     END_POINT = '220.67.154.77';
 }
