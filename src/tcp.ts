@@ -7,9 +7,8 @@ import crypto from 'crypto'
 
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
 
-
-// const END_POINT = '172.30.1.55'
-let END_POINT = '192.210.56.239'
+//let END_POINT = '192.210.56.239'
+let END_POINT = '220.67.154.77'
 if (env === 'production') {
     END_POINT = '220.67.154.77'
 }
@@ -19,9 +18,7 @@ if (env === 'production') {
 
 
 export const openConnectionToTcpServerAndRequest = async (protocolVersion, request, src, cipherType, cipherSet, bodyLength, jsonData: object, res: Response, secondRequestNum: any) => {
-    setTimeout(() => {
-        return;
-    }, 4500);
+
     let count = 0;
     let AES_KEY;
     let iv;
@@ -47,10 +44,15 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
         const header = createHeaderProtocol(protocolVersion, request, src, cipherType, cipherSet, bodyLength);
 
         client.write(header)
+
+
     })
 
 
+
+
     client.on('readable', function () {
+
         while (null !== (chunk = client.read(N))) {
             console.log('got %d bytes of data', chunk.length);
             if (N === 17 && header) {
@@ -63,6 +65,7 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
                 const body_length = chunk.readUInt32BE(13)
                 header = false;
                 N = body_length;
+
             } else if (count === 0) {
                 count += 1;
                 // 암호화된 AES_KEY 받는 부분
@@ -76,8 +79,11 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
 
                 const secondHeader = createHeaderProtocol(protocolVersion, secondRequestNum, src, cipherType, cipherSet, mystr.length)
 
+
+
                 client.write(secondHeader);
                 client.write(mystr);
+
                 header = true;
                 N = 17;
             } else if (count === 1) {
@@ -86,6 +92,7 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
                 mystr += mykey.final('utf8');
                 header = true;
                 N = 17;
+
                 res.json(JSON.parse(mystr))
                 return;
             }
@@ -94,7 +101,7 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
 
     client.on('close', () => {
         count = 0;
-        console.log('tcp connection closed')
+        console.log('tcp 연결이 끊켰습니다. ')
     })
 }
 

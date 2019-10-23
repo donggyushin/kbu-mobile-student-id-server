@@ -45,17 +45,14 @@ var createHeaderProtocol_1 = require("./utils/createHeaderProtocol");
 var node_rsa_1 = __importDefault(require("node-rsa"));
 var crypto_1 = __importDefault(require("crypto"));
 var env = process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
-// const END_POINT = '172.30.1.55'
-var END_POINT = '192.210.56.239';
+//let END_POINT = '192.210.56.239'
+var END_POINT = '220.67.154.77';
 if (env === 'production') {
     END_POINT = '220.67.154.77';
 }
 exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request, src, cipherType, cipherSet, bodyLength, jsonData, res, secondRequestNum) { return __awaiter(void 0, void 0, void 0, function () {
     var count, AES_KEY, iv, client, chunk, N, header, RSA_KEY, keyData, key;
     return __generator(this, function (_a) {
-        setTimeout(function () {
-            return;
-        }, 4500);
         count = 0;
         client = new net_1.default.Socket();
         N = 17;
@@ -112,7 +109,7 @@ exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request
         });
         client.on('close', function () {
             count = 0;
-            console.log('tcp connection closed');
+            console.log('tcp 연결이 끊켰습니다. ');
         });
         return [2 /*return*/];
     });

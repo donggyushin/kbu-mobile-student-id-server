@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 
 export const sendQrcodeDataToSend = (req: Request, res: Response) => {
     const { token } = req.body;
+
     const jsonData = {
         token
     }
