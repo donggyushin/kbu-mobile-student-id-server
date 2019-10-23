@@ -9,7 +9,7 @@ const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
 
 
 // const END_POINT = '172.30.1.55'
-let END_POINT = '220.67.154.77'
+let END_POINT = '192.210.56.239'
 if (env === 'production') {
     END_POINT = '220.67.154.77'
 }
