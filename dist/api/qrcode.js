@@ -7,4 +7,5 @@ var express_1 = __importDefault(require("express"));
 var qrcode_1 = require("../controllers/qrcode");
 var router = express_1.default.Router();
 router.post('/', qrcode_1.requestQrCode);
+router.post('/send', qrcode_1.sendQrcodeDataToSend);
 exports.default = router;
