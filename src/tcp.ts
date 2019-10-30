@@ -56,6 +56,7 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
         while (null !== (chunk = client.read(N))) {
             console.log('got %d bytes of data', chunk.length);
             if (N === 17 && header) {
+                console.log('received header')
                 const protocol_version = chunk.readUInt16BE(0)
                 const request_number = chunk.readUInt16BE(2)
                 const timestamp = chunk.readInt32BE(4)
@@ -83,10 +84,12 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
 
                 client.write(secondHeader);
                 client.write(mystr);
-
+                console.log('sending data')
+                console.log(jsonDataToText)
                 header = true;
                 N = 17;
             } else if (count === 1) {
+                console.log('receiving data')
                 const mykey = crypto.createDecipheriv('aes-256-cbc', AES_KEY, iv);
                 let mystr = mykey.update(chunk.toString(), 'base64', 'utf8');
                 mystr += mykey.final('utf8');
@@ -99,6 +102,7 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
                         // 여기서 세션 관리
                     }
                 }
+
                 res.json(JSON.parse(mystr))
                 return;
             }

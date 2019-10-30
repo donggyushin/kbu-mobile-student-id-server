@@ -70,6 +70,7 @@ exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request
             while (null !== (chunk = client.read(N))) {
                 console.log('got %d bytes of data', chunk.length);
                 if (N === 17 && header) {
+                    console.log('received header');
                     var protocol_version = chunk.readUInt16BE(0);
                     var request_number = chunk.readUInt16BE(2);
                     var timestamp = chunk.readInt32BE(4);
@@ -93,10 +94,13 @@ exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request
                     var secondHeader = createHeaderProtocol_1.createHeaderProtocol(protocolVersion, secondRequestNum, src, cipherType, cipherSet, mystr.length);
                     client.write(secondHeader);
                     client.write(mystr);
+                    console.log('sending data');
+                    console.log(jsonDataToText);
                     header = true;
                     N = 17;
                 }
                 else if (count === 1) {
+                    console.log('receiving data');
                     var mykey = crypto_1.default.createDecipheriv('aes-256-cbc', AES_KEY, iv);
                     var mystr = mykey.update(chunk.toString(), 'base64', 'utf8');
                     mystr += mykey.final('utf8');
