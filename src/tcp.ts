@@ -38,7 +38,7 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
     key.importKey(keyData, 'pkcs1')
 
 
-    client.connect(9765, END_POINT, () => {
+    client.connect(9766, END_POINT, () => {
         console.log('TCP socket conneted!');
 
         const header = createHeaderProtocol(protocolVersion, request, src, cipherType, cipherSet, bodyLength);

@@ -61,7 +61,7 @@ exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request
         keyData = RSA_KEY.toString();
         key = new node_rsa_1.default();
         key.importKey(keyData, 'pkcs1');
-        client.connect(9765, END_POINT, function () {
+        client.connect(9766, END_POINT, function () {
             console.log('TCP socket conneted!');
             var header = createHeaderProtocol_1.createHeaderProtocol(protocolVersion, request, src, cipherType, cipherSet, bodyLength);
             client.write(header);
