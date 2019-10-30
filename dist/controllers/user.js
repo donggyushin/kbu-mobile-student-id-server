@@ -38,13 +38,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsonwebtoken_1 = require("../utils/jsonwebtoken");
 var tcp_1 = require("../tcp");
+exports.logoutUser = function (req, res) {
+    req.session.id = null;
+    req.session.pw = null;
+    res.json({
+        ok: true,
+        error: null
+    });
+};
 exports.getUserInfo = function (req, res) {
     var _a = req.body, id = _a.id, password = _a.password;
     var jsonData = {
         id: id,
         pw: password
     };
-    tcp_1.openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 3);
+    // @ts-ignore
+    tcp_1.openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 3, req);
 };
 exports.login = function (req, res) {
     var _a = req.body, id = _a.id, password = _a.password;
@@ -52,7 +61,7 @@ exports.login = function (req, res) {
         id: id,
         pw: password
     };
-    tcp_1.openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 2);
+    tcp_1.openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 2, req, id, password);
     return;
 };
 exports.newAccount = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {

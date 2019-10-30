@@ -50,7 +50,7 @@ var END_POINT = '220.67.154.77';
 if (env === 'production') {
     END_POINT = '220.67.154.77';
 }
-exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request, src, cipherType, cipherSet, bodyLength, jsonData, res, secondRequestNum) { return __awaiter(void 0, void 0, void 0, function () {
+exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request, src, cipherType, cipherSet, bodyLength, jsonData, res, secondRequestNum, req, id, pw) { return __awaiter(void 0, void 0, void 0, function () {
     var count, AES_KEY, iv, client, chunk, N, header, RSA_KEY, keyData, key;
     return __generator(this, function (_a) {
         count = 0;
@@ -102,6 +102,12 @@ exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request
                     mystr += mykey.final('utf8');
                     header = true;
                     N = 17;
+                    if (secondRequestNum === 2) {
+                        var resultJson = JSON.parse(mystr);
+                        if (resultJson.is_ok) {
+                            // 여기서 세션 관리
+                        }
+                    }
                     res.json(JSON.parse(mystr));
                     return;
                 }

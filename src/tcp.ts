@@ -2,7 +2,7 @@ import net from 'net'
 import fs from 'fs';
 import { createHeaderProtocol } from './utils/createHeaderProtocol';
 import NodeRSA from 'node-rsa';
-import { Response } from 'express'
+import { Response, Request } from 'express'
 import crypto from 'crypto'
 
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
@@ -17,7 +17,7 @@ if (env === 'production') {
 
 
 
-export const openConnectionToTcpServerAndRequest = async (protocolVersion, request, src, cipherType, cipherSet, bodyLength, jsonData: object, res: Response, secondRequestNum: any) => {
+export const openConnectionToTcpServerAndRequest = async (protocolVersion, request, src, cipherType, cipherSet, bodyLength, jsonData: object, res: Response, secondRequestNum: any, req, id: string, pw: string) => {
 
     let count = 0;
     let AES_KEY;
@@ -92,7 +92,13 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
                 mystr += mykey.final('utf8');
                 header = true;
                 N = 17;
+                if (secondRequestNum === 2) {
+                    const resultJson = JSON.parse(mystr);
 
+                    if (resultJson.is_ok) {
+                        // 여기서 세션 관리
+                    }
+                }
                 res.json(JSON.parse(mystr))
                 return;
             }

@@ -5,9 +5,17 @@ import cors from 'cors'
 import morgan from 'morgan'
 import compression from 'compression'
 import helmet from 'helmet'
+import session from 'express-session';
 
 
 const app: Application = express();
+
+app.use(session({
+    secret: 'keyborad cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
 // Allow server to accept json type data from client side. 
 app.use(json())
 // As we are developing an API that will serve data for any kind of 

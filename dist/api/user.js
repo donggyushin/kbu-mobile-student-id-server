@@ -9,4 +9,5 @@ var router = express_1.default.Router();
 router.post('/', user_1.newAccount);
 router.post('/login', user_1.login);
 router.post('/getuser', user_1.getUserInfo);
+router.get('/logout', user_1.logoutUser);
 exports.default = router;

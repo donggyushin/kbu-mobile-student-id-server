@@ -1,15 +1,26 @@
 import { generateToken } from "../utils/jsonwebtoken";
 import { openConnectionToTcpServerAndRequest } from '../tcp'
+import { Request, Response } from 'express'
 
-export const getUserInfo = (req, res) => {
+export const logoutUser = (req: Request, res: Response) => {
+    req.session.id = null;
+    req.session.pw = null;
+    res.json({
+        ok: true,
+        error: null
+    })
+}
+
+
+export const getUserInfo = (req: Request, res: Response) => {
     const { id, password } = req.body;
     const jsonData = {
         id,
         pw: password
     }
-
+    // @ts-ignore
     openConnectionToTcpServerAndRequest(
-        0, 1, 1, 1, 0, 0, jsonData, res, 3
+        0, 1, 1, 1, 0, 0, jsonData, res, 3, req
     )
 }
 
@@ -19,6 +30,7 @@ export const login = (req, res) => {
         password
     } = req.body
 
+
     const jsonData = {
         id,
         pw: password
@@ -26,7 +38,7 @@ export const login = (req, res) => {
 
 
     openConnectionToTcpServerAndRequest(
-        0, 1, 1, 1, 0, 0, jsonData, res, 2
+        0, 1, 1, 1, 0, 0, jsonData, res, 2, req, id, password
     )
 
     return;

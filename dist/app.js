@@ -10,7 +10,14 @@ var cors_1 = __importDefault(require("cors"));
 var morgan_1 = __importDefault(require("morgan"));
 var compression_1 = __importDefault(require("compression"));
 var helmet_1 = __importDefault(require("helmet"));
+var express_session_1 = __importDefault(require("express-session"));
 var app = express_1.default();
+app.use(express_session_1.default({
+    secret: 'keyborad cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}));
 // Allow server to accept json type data from client side. 
 app.use(body_parser_1.json());
 // As we are developing an API that will serve data for any kind of 

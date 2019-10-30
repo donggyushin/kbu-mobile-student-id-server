@@ -7,7 +7,8 @@ export const sendQrcodeDataToSend = (req: Request, res: Response) => {
     const jsonData = {
         token
     }
-    openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 5);
+    // @ts-ignore
+    openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 5, req);
 }
 
 export const requestQrCode = (req: Request, res: Response) => {
@@ -17,5 +18,6 @@ export const requestQrCode = (req: Request, res: Response) => {
         sid,
         token
     }
-    openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 4);
+    // @ts-ignore
+    openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 4, req);
 }
