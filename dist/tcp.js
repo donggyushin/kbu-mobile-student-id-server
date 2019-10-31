@@ -48,7 +48,7 @@ var env = process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
 //let END_POINT = '192.210.56.239'
 var END_POINT = '220.67.154.77';
 if (env === 'production') {
-    END_POINT = '172.31.42.14';
+    END_POINT = '220.67.154.77';
 }
 exports.openConnectionToTcpServerAndRequest = function (protocolVersion, request, src, cipherType, cipherSet, bodyLength, jsonData, res, secondRequestNum, req, id, pw) { return __awaiter(void 0, void 0, void 0, function () {
     var count, AES_KEY, iv, client, chunk, N, header, RSA_KEY, keyData, key;
