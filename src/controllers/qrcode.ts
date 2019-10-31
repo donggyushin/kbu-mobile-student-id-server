@@ -12,11 +12,12 @@ export const sendQrcodeDataToSend = (req: Request, res: Response) => {
 }
 
 export const requestQrCode = (req: Request, res: Response) => {
-    const { id, sid, token } = req.body;
+    const { id, sid, token, name } = req.body;
     const jsonData = {
         id,
         sid,
-        token
+        token,
+        name
     }
     // @ts-ignore
     openConnectionToTcpServerAndRequest(0, 1, 1, 1, 0, 0, jsonData, res, 4, req);
