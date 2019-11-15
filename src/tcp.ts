@@ -71,6 +71,7 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
                 count += 1;
                 // 암호화된 AES_KEY 받는 부분
                 AES_KEY = key.decrypt(chunk)
+
                 // 여기부터 다시하자ㅂ!!
                 iv = '1234567890123456';
                 const jsonDataToText = JSON.stringify(jsonData);
@@ -86,6 +87,7 @@ export const openConnectionToTcpServerAndRequest = async (protocolVersion, reque
                 client.write(mystr);
                 console.log('sending data')
                 console.log(jsonDataToText)
+
                 header = true;
                 N = 17;
             } else if (count === 1) {

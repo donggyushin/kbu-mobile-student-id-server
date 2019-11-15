@@ -1,0 +1,1 @@
+export const KBU_CAFETERIA_URL = 'http://220.67.154.74:8080/SchoolFood/ResultOutput.jsp'
