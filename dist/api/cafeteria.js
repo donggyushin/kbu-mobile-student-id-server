@@ -6,5 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var cafeteria_1 = require("../controllers/cafeteria");
 var router = express_1.default.Router();
-router.get('', cafeteria_1.fetchCafeteria);
+router.get('/:date', cafeteria_1.fetchCafeteria);
 exports.default = router;

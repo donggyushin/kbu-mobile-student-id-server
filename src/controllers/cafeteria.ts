@@ -4,16 +4,17 @@ import { Request, Response, NextFunction } from 'express'
 import { KBU_CAFETERIA_URL } from '../consts/endpoint'
 const log = console.log
 
-const getHtml = async () => {
+const getHtml = async (date) => {
     try {
-        return await axios.get(KBU_CAFETERIA_URL)
+        return await axios.get(`http://220.67.154.74:8080/SchoolFood/SelectMenuOutput.jsp?start=${date}&end=${date}`)
     } catch (error) {
         console.error(error)
     }
 }
 
 export const fetchCafeteria = (req: Request, res: Response, next: NextFunction) => {
-    getHtml()
+    const { date } = req.params
+    getHtml(date)
         .then(html => {
             let uList = [];
             const $ = cheerio.load(html.data)

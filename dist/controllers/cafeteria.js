@@ -41,15 +41,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(require("axios"));
 var cheerio_1 = __importDefault(require("cheerio"));
-var endpoint_1 = require("../consts/endpoint");
 var log = console.log;
-var getHtml = function () { return __awaiter(void 0, void 0, void 0, function () {
+var getHtml = function (date) { return __awaiter(void 0, void 0, void 0, function () {
     var error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, axios_1.default.get(endpoint_1.KBU_CAFETERIA_URL)];
+                return [4 /*yield*/, axios_1.default.get("http://220.67.154.74:8080/SchoolFood/SelectMenuOutput.jsp?start=" + date + "&end=" + date)];
             case 1: return [2 /*return*/, _a.sent()];
             case 2:
                 error_1 = _a.sent();
@@ -60,7 +59,8 @@ var getHtml = function () { return __awaiter(void 0, void 0, void 0, function ()
     });
 }); };
 exports.fetchCafeteria = function (req, res, next) {
-    getHtml()
+    var date = req.params.date;
+    getHtml(date)
         .then(function (html) {
         var uList = [];
         var $ = cheerio_1.default.load(html.data);
