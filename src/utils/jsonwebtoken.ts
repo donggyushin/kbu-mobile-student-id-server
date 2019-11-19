@@ -12,3 +12,7 @@ export const decodeToken = (token: string): string => {
     // @ts-ignore
     return decoded.id
 }
+
+export const returnDecoded = (token: string) => {
+    return jwt.verify(token, secretKey)
+}

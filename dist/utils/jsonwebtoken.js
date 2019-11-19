@@ -14,3 +14,6 @@ exports.decodeToken = function (token) {
     // @ts-ignore
     return decoded.id;
 };
+exports.returnDecoded = function (token) {
+    return jsonwebtoken_1.default.verify(token, secretKey);
+};
