@@ -13,10 +13,6 @@ if (env === 'production') {
     END_POINT = '220.67.154.77'
 }
 
-
-
-
-
 export const openConnectionToTcpServerAndRequest = async (protocolVersion, request, src, cipherType, cipherSet, bodyLength, jsonData: object, res: Response, secondRequestNum: any, req, id: string, pw: string) => {
 
     let count = 0;

@@ -14,11 +14,13 @@ const getHtml = async (date) => {
 
 export const fetchCafeteria = (req: Request, res: Response, next: NextFunction) => {
     const { date } = req.params
+    console.log('date: ', date)
     getHtml(date)
         .then(html => {
             let uList = [];
             const $ = cheerio.load(html.data)
             const $bodyList = $("body");
+
             const data = JSON.parse($bodyList.text())
             res.json({
                 ok: true,
