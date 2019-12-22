@@ -8,6 +8,7 @@ import lecture from './lecture';
 import mileage from './mileage'
 import notice from './notice'
 import cafeteria from './cafeteria'
+import prayer from './prayer'
 
 const router = express.Router();
 
@@ -20,5 +21,6 @@ router.use('/lecture', lecture)
 router.use('/mileage', mileage)
 router.use('/notice', notice)
 router.use('/cafeteria', cafeteria)
+router.use('/prayer', prayer)
 
 export default router;
