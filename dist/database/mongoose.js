@@ -11,6 +11,8 @@ var env = process.env.NODE_ENV || 'env';
 if (env === 'production') {
     DB_ENDPOINT = process.env.DATABASE_ENDPOINT_PRD;
 }
+else if (env === 'docker') {
+}
 mongoose_1.default.connect(DB_ENDPOINT, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose_1.default.connection;
 db.on('error', console.error.bind(console, 'connection error: '));

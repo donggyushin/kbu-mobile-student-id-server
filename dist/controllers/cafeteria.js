@@ -60,6 +60,7 @@ var getHtml = function (date) { return __awaiter(void 0, void 0, void 0, functio
 }); };
 exports.fetchCafeteria = function (req, res, next) {
     var date = req.params.date;
+    console.log('date: ', date);
     getHtml(date)
         .then(function (html) {
         var uList = [];

@@ -12,17 +12,21 @@ const credentials = {
     ca: chain
 }
 
-const PORT = 4000
+const PORT = process.env.PORT
 
 const httpServer = http.createServer(App);
 const httpsServer = https.createServer(credentials, App);
 
 let env = process.env.NODE_ENV ? process.env.NODE_ENV : 'env';
 
+console.log('env: ', env)
+
 if (env === 'env') {
     httpServer.listen(PORT, () => console.log(`KBU WAS http server listening on ${PORT}`))
-} else {
+} else if (env === 'production') {
     httpsServer.listen(PORT, () => console.log(`KBU WAS https server listening on ${PORT}`));
+} else if (env === 'docker') {
+    httpServer.listen(PORT, () => console.log(`KBU WAS http server listening on ${PORT}`))
 }
 
 

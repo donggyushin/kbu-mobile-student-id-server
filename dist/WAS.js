@@ -16,14 +16,18 @@ var credentials = {
     cert: certificate,
     ca: chain
 };
-var PORT = 4000;
+var PORT = process.env.PORT;
 var httpServer = http_1.default.createServer(app_1.default);
 var httpsServer = https_1.default.createServer(credentials, app_1.default);
 var env = process.env.NODE_ENV ? process.env.NODE_ENV : 'env';
+console.log('env: ', env);
 if (env === 'env') {
     httpServer.listen(PORT, function () { return console.log("KBU WAS http server listening on " + PORT); });
 }
-else {
+else if (env === 'production') {
     httpsServer.listen(PORT, function () { return console.log("KBU WAS https server listening on " + PORT); });
+}
+else if (env === 'docker') {
+    httpServer.listen(PORT, function () { return console.log("KBU WAS http server listening on " + PORT); });
 }
 // App.listen(PORT, () => console.log(`KBU-MOBILE-STUDENT-ID-SERVER running on port ${PORT}`))
